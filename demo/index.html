@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="App">
+    <head>
+        <title>ngUtils Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="index.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="angularjs-1.5.3.js" type="text/javascript"></script>
+        
+        <script src="../ngUtils.js" type="text/javascript"></script>
+        <script src="../ngUtils.Date.js" type="text/javascript"></script>
+        <script src="../ngUtils.Number.js" type="text/javascript"></script>
+        <script src="../ngUtils.String.js" type="text/javascript"></script>
+        
+        <script src="pt_BR.js" type="text/javascript"></script>
+        
+        <script src="index.js" type="text/javascript"></script>
+    </head>
+    <body ng-controller="AppCtrl">
+        <!-- ngUtilsNumber -->
+        <section>
+            <h1>ngUtilsNumber</h1>
+            <table border="1" cellspacing="0">
+                <tr>
+                    <td>1234 | ngUtilsNumber</td>
+                    <td>{{1234 | ngUtilsNumber}}</td>
+                </tr>
+                <tr>
+                    <td>1234456789 | ngUtilsNumber:2</td>
+                    <td>{{1234456789 | ngUtilsNumber:2}}</td>
+                </tr>
+                <tr>
+                    <td>12345 | ngUtilsNumber:2:'currency'</td>
+                    <td>{{12345 | ngUtilsNumber:2:'currency'}}</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- ngUtilsNumber -->
+        <section>
+            <h1>ngUtilsDate</h1>
+            <table border="1" cellspacing="0">
+                <tr>
+                    <td>new Date() | ngUtilsDate</td>
+                    <td>{{date | ngUtilsDate}}</td>
+                </tr>
+                <tr>
+                    <td>new Date() | ngUtilsDate:'y'</td>
+                    <td>{{date | ngUtilsDate:'y'}}</td>
+                </tr>
+                <tr>
+                    <td>new Date() | ngUtilsDate:'MM-y'</td>
+                    <td>{{date | ngUtilsDate:'MM-y'}}</td>
+                </tr>
+                <tr>
+                    <td>new Date() | ngUtilsDate:'MMM-y'</td>
+                    <td>{{date | ngUtilsDate:'MMM-y'}}</td>
+                </tr>
+                <tr>
+                    <td>new Date() | ngUtilsDate:'MMMM-y'</td>
+                    <td>{{date | ngUtilsDate:'MMMM-y'}}</td>
+                </tr>
+            </table>
+        </section>
+    </body>
+</html>
