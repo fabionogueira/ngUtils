@@ -6,22 +6,6 @@
         DECIMAL_SEPARATOR  = '.',
         CURRENCY_SYM       = '$';
     
-    Number.locale = function(locale){
-        GROUP_SEP          = locale.NUMBER_FORMATS.GROUP_SEP, 
-        DECIMAL_SEPARATOR  = locale.NUMBER_FORMATS.DECIMAL_SEP;
-        CURRENCY_SYM       = locale.NUMBER_FORMATS.CURRENCY_SYM;
-    };
-    
-    Number.format = numberFormat;
-    Number.prototype.format = function(decimals, thousandSeparator, decimalSeparator){
-        return numberFormat(this, decimals, thousandSeparator, decimalSeparator);
-    };
-    
-    Number.currency = currencyFormat;
-    Number.prototype.currency = function(decimals){
-        return currencyFormat(this, decimals);
-    };
-    
     /**
      * @filter ngUtilsNumber
      * @author Fábio Nogueira <fabio.bacabal@gmail.com>
@@ -40,15 +24,18 @@
      *              //f será igual a: 1,234,567.000
      *          }]);
     */
-
     angular.module('ngUtils').filter('ngUtilsNumber', [function(){
             
         return function(input, decimals, thousandSeparator, decimalSeparator) {
             if (input){
                 input = Number(input);
                 
+                decimals          = decimals===undefined ? 0 : decimals;
+                thousandSeparator = thousandSeparator || GROUP_SEP;
+                decimalSeparator  = decimalSeparator  || DECIMAL_SEPARATOR;
+
                 if (thousandSeparator==='currency'){
-                    return currencyFormat(input, decimals);
+                    return currencyFormat(input, decimals, thousandSeparator, decimalSeparator);
                 }
                 
                 return numberFormat(input, decimals, thousandSeparator, decimalSeparator);
@@ -57,12 +44,25 @@
         
     }]);
     
+    Number.locale = function(locale){
+        GROUP_SEP          = locale.NUMBER_FORMATS.GROUP_SEP, 
+        DECIMAL_SEPARATOR  = locale.NUMBER_FORMATS.DECIMAL_SEP;
+        CURRENCY_SYM       = locale.NUMBER_FORMATS.CURRENCY_SYM;
+    };
+    
+    Number.format = numberFormat;
+    Number.prototype.format = function(decimals, thousandSeparator, decimalSeparator){
+        return numberFormat(this, decimals, thousandSeparator, decimalSeparator);
+    };
+    
+    Number.currency = currencyFormat;
+    Number.prototype.currency = function(decimals){
+        decimals = decimals===undefined ? 0 : decimals;
+        return currencyFormat(this, decimals);
+    };
+    
     function numberFormat(value, decimals, thousandSeparator, decimalSeparator){
         var re, num, x=3;
-        
-        decimals          = decimals===undefined ? 0 : decimals;
-        thousandSeparator = thousandSeparator || GROUP_SEP;
-        decimalSeparator  = decimalSeparator  || DECIMAL_SEPARATOR;
         
         re = '\\d(?=(\\d{' + (x) + '})+' + (decimals > 0 ? '\\D' : '$') + ')';
         num = value.toFixed(Math.max(0, ~~decimals));
