@@ -14,6 +14,9 @@
      *      <div>
      *          {{123456 | ngUtilsNumber:2:'.':','}}
      *          <!-- Resulta em: 123.456,00 -->
+     *          
+     *          {{123456 | ngUtilsNumber:2:'currency'}}
+     *          <!-- Resulta em: $123.456,00 -->
      *      </div>
      *      
      *      //Exemplo 02 | JAVASCRIPT
