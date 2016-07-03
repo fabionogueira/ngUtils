@@ -1,5 +1,6 @@
 /**
  * ngUtils.Number.js
+ * @version 1.0.0
  */
 (function(){
     var GROUP_SEP          = ',', 

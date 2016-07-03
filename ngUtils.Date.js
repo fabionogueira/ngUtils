@@ -1,5 +1,6 @@
 /**
  * ngUtils.Date.js
+ * @version 1.0.0
  */
 (function(){
     var DATETIME_FORMATS;
@@ -78,13 +79,13 @@
         if (DATETIME_FORMATS){
             return DATETIME_FORMATS.SHORTMONTH[dt.getMonth()];
         }
-        return Masks.mm(dt);
+        return Masks.MM(dt);
     });
     Date.setMask('MMMM', function(dt, Masks){
         if (DATETIME_FORMATS){
             return DATETIME_FORMATS.MONTH[dt.getMonth()];
         }
-        return Masks.mm(dt);
+        return Masks.MM(dt);
     });
     Date.setMask('d', function(dt){
         return dt.getDate();
